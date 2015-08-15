@@ -44,9 +44,9 @@ Page.prototype.bind = function () {
 			that.endposition.push(e.touches[0].pageX,e.touches[0].pageY);
 		}
 	}).on('touchmove', function (e) {
+
 		var pagey = e.touches[0].pageY;
 		that.move = true;
-		console.log('touchmove');
 		if ((that.nowPage || that.pages.eq(that.lastPage).length !== 0) && that.stop && isLogin) {
 			if (pagey - that.endposition[1] < 0 && that.nowPage) {
 				that.moveDir = 'up';
@@ -62,7 +62,7 @@ Page.prototype.bind = function () {
 			that.endposition.push(e.touches[0].pageX,e.touches[0].pageY);
 		}
 	}).on('touchend',function (e) {
-		console.log('touchend');
+		console.log('end');
 		if (that.move && isLogin) {
 			that.move = false;
 			if (that.pages.eq(that.lastPage).length !== 0 && that.stop && (that.moveDir == 'down')) {
