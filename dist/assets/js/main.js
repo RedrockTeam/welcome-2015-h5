@@ -240,8 +240,8 @@ Draw.prototype.drawCome = function (context) {
 		                }
 		            },
 		            data:[
-		                {value:data.from.hometown, name:'你的老乡'},
-		                {value:679, name:'其它省份'}
+		                {value:parseInt(data.from.hometown), name:'你的老乡'},
+		                {value:parseInt(data.from.others), name:'其它省份'}
 		            ]
 		        },
 		        {
@@ -264,8 +264,8 @@ Draw.prototype.drawCome = function (context) {
 		                }
 		            },
 		            data:[
-		                {value:data.from.male, name:'老乡男生'},
-		                {value:data.from.female, name:'老乡女生'}
+		                {value:parseInt(data.from.male), name:'老乡男生'},
+		                {value:parseInt(data.from.female), name:'老乡女生'}
 		            ]
 		        }]
 		    };
@@ -320,8 +320,8 @@ Draw.prototype.drawSame = function (context) {
 			                }
 			            },
 			            data:[
-			                {value:data.same.samemon, name:'同年同月'},
-			                {value:data.same.others, name:'其它'},
+			                {value:parseInt(data.same.samemon), name:'同年同月'},
+			                {value:parseInt(data.same.others), name:'其它'},
 			            ]
 			        }
 			    ]
@@ -366,9 +366,9 @@ Draw.prototype.drawHard = function (context) {
 			            radius : '55%',
 			            center: ['50%', '50%'],
 			            data:[
-			                {value:hard[data.collage].n1k, name:hard[data.collage].n1},
-			                {value:hard[data.collage].n2k, name:hard[data.collage].n2},
-			                {value:hard[data.collage].n3k, name:hard[data.collage].n3}
+			                {value:hard[data.college].n1k, name:hard[data.college].n1},
+			                {value:hard[data.college].n2k, name:hard[data.college].n2},
+			                {value:hard[data.college].n3k, name:hard[data.college].n3}
 			            ]
 			        }
 			    ]
@@ -413,10 +413,10 @@ Draw.prototype.drawFuture = function (context) {
 			            radius : '55%',
 			            center: ['50%', '50%'],
 			            data:[
-			                {value:future[data.collage].jy, name:'签约就业'},
-			                {value:future[data.collage].sx, name:'升学出国'},
-			                {value:future[data.collage].djy, name:'待就业'},
-			                {value:future[data.collage].lh, name:'灵活就业'}
+			                {value:future[data.college].jy, name:'签约就业'},
+			                {value:future[data.college].sx, name:'升学出国'},
+			                {value:future[data.college].djy, name:'待就业'},
+			                {value:future[data.college].lh, name:'灵活就业'}
 			            ]
 			        }
 			    ]
