@@ -77,7 +77,7 @@
 		$.ajax({
 			url: 'http://hongyan.cqupt.edu.cn/welcome/2015/index.php/home/api/data?push=data',
 			type: 'post',
-			data: {name: $('.user').val(), pwd: $('.pwd').val()},
+			data: {name: $('.user input').val(), pwd: $('.pwd input').val()},
 			success: function (res) {
 				console.log(res);
 				if(data.status == 404){
