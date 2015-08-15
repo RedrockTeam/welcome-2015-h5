@@ -432,9 +432,9 @@ Draw.prototype.drawFuture = function (context) {
 		}); 
 };
 
-Draw.prototype.drawAll = function (obj,callback,obj) {
+Draw.prototype.drawAll = function (fun,callback,obj) {
 	for (var i = 0; i < obj.length; i++) {
-		this[obj](obj);
+		this[fun](fun);
 	}
 	if (callback) {
 		if (obj) {
@@ -443,10 +443,10 @@ Draw.prototype.drawAll = function (obj,callback,obj) {
 	}
 }
 
-Draw.prototype.context = function (obj,callback,obj) {
+Draw.prototype.context = function (fun,callback,obj) {
 	// console.log(obj.data('id'));
-	if (obj){
-		this[obj](obj);
+	if (fun){
+		this[fun](fun);
 	}
 	if (callback){
 		if (obj) {
