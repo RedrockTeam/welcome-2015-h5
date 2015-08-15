@@ -74,6 +74,13 @@
 	<script>
 	var data = '';
 	var isLogin = false;
+
+	require.config({
+            paths: {
+                echarts: './dist/js'
+            }
+        });
+
 	$('.submit').on('touchend', function (e) {
 		e.preventDefault();
 		$.ajax({
