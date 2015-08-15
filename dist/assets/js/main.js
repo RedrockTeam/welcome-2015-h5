@@ -433,8 +433,8 @@ Draw.prototype.drawFuture = function (context) {
 };
 
 Draw.prototype.drawAll = function (fun,callback,obj) {
-	for (var i = 0; i < obj.length; i++) {
-		this[fun](fun);
+	for (var i = 0; i < fun.length; i++) {
+		this[fun[i]](fun[i]);
 	}
 	if (callback) {
 		if (obj) {
