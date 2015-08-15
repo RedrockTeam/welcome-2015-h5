@@ -39,14 +39,14 @@ Page.prototype.bind = function () {
 	var that = this;
 	this.pages.on('touchstart', function (e) {
 		console.log('touch start!');
-		if ((that.nowPage || that.pages.eq(that.lastPage).length !== 0) && that.stop) {
+		if ((that.nowPage || that.pages.eq(that.lastPage).length !== 0) && that.stop && isLogin) {
 			that.endposition = [];
 			that.endposition.push(e.touches[0].pageX,e.touches[0].pageY);
 		}
 	}).on('touchmove', function (e) {
 		var pagey = e.touches[0].pageY;
 		that.move = true;
-		if ((that.nowPage || that.pages.eq(that.lastPage).length !== 0) && that.stop) {
+		if ((that.nowPage || that.pages.eq(that.lastPage).length !== 0) && that.stop && isLogin) {
 			if (pagey - that.endposition[1] < 0 && that.nowPage) {
 				that.moveDir = 'up';
 				that.pages.eq(that.nowPage).css({top: parseFloat(that.pages.eq(that.nowPage).css('top')) + pagey - that.endposition[1]});
@@ -61,7 +61,7 @@ Page.prototype.bind = function () {
 			that.endposition.push(e.touches[0].pageX,e.touches[0].pageY);
 		}
 	}).on('touchend',function (e) {
-		if (that.move) {
+		if (that.move && isLogin) {
 			that.move = false;
 			if (that.pages.eq(that.lastPage).length !== 0 && that.stop && (that.moveDir == 'down')) {
 				that.stop = false;
