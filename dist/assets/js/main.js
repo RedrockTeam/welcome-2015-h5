@@ -20,8 +20,7 @@ Page.prototype.slidedown = function (page) {
 	this.pages.eq(page).animate({
 		top: '0px'
 	},500,'ease-out',function () {
-		draw.context(that.pages.eq(page).data('id'),function (that) {that.stop = true;});
-		
+		draw.context(that.pages.eq(page).data('id'),function (that) {that.stop = true;});	
 	});
 };
 
@@ -438,7 +437,9 @@ Draw.prototype.context = function (obj,callback) {
 	if (obj){
 		this[obj](obj);
 	}
-	callback(page);
+	if (callback){
+		callback(page);
+	}
 };
 
 var page = new Page($('.page'));
