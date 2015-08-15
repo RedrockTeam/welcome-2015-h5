@@ -1,3 +1,8 @@
+var height = $(document).height();
+		$('.page').css('height',height+'px');
+		$('.login').css('height',height+'px');
+		$('.pageList').css('height',height+'px');
+
 function Page (obj) {
 	this.nowPage = obj.length - 1;
 	this.lastPage = obj.length; 
@@ -31,7 +36,7 @@ Page.prototype.slideup = function (page) {
 };
 
 Page.prototype.login = function () {
-	$('.login').eq(0).animate({top: -$('.login').height() + 'px'}, 500, "ease-in");
+	$('.login').eq(0).animate({top: -height + 'px'}, 500, "ease-in");
 };
 
 Page.prototype.bind = function () {
