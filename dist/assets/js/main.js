@@ -15,21 +15,21 @@ function Page (obj) {
 	this.move = false;
 }
 
-Page.prototype.slidedown = function (page) {
+Page.prototype.slidedown = function (pg) {
 	var that = this;
-	this.pages.eq(page).animate({
+	this.pages.eq(pg).animate({
 		top: '0px'
 	},500,'ease-out',function () {
-		draw.context(that.pages.eq(page).data('id'),function (that) {that.stop = true;},page);	
+		draw.context(that.pages.eq(pg).data('id'),function (that) {that.stop = true;},that);	
 	});
 };
 
-Page.prototype.slideup = function (page) {
+Page.prototype.slideup = function (pg) {
 	var that = this;
-	this.pages.eq(page).animate({
+	this.pages.eq(pg).animate({
 		top: -this.pagesHeight
 	},500,'ease-out',function () {
-		draw.context(that.pages.eq(page-1).data('id'),function (that) {that.stop = true;},page);
+		draw.context(that.pages.eq(pg-1).data('id'),function (that) {that.stop = true;},that);
 		
 	});
 };
