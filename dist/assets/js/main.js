@@ -318,12 +318,11 @@ Draw.prototype.drawSame = function (context) {
 			            itemStyle : {
 			                normal : {
 			                    label : {
-			                        position : 'inner'
+			                        position : 'outer'
 			                    },
 			                    labelLine : {
-			                    	show: false
-			                    },
-			                    
+			                    	show: true  
+			                    }
 			                }
 			            },
 			            data:[
