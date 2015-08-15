@@ -44,6 +44,7 @@ Page.prototype.bind = function () {
 	var that = this;
 	this.pages.on('touchstart', function (e) {
 		console.log('touch start!');
+		event.preventDefault();
 		if ((that.nowPage || that.pages.eq(that.lastPage).length !== 0) && that.stop && isLogin) {
 			that.endposition = [];
 			that.endposition.push(e.touches[0].pageX,e.touches[0].pageY);
