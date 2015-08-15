@@ -440,7 +440,7 @@ Draw.prototype.drawAll = function (fun,callback,obj) {
 			callback(obj);
 		}
 	}
-}
+};
 
 Draw.prototype.context = function (fun,callback,obj) {
 	// console.log(obj.data('id'));
