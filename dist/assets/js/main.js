@@ -20,7 +20,7 @@ Page.prototype.slidedown = function (page) {
 	this.pages.eq(page).animate({
 		top: '0px'
 	},500,'ease-out',function () {
-		draw.context(that.pages.eq(page).data('id'),function (that) {that.stop = true;});	
+		draw.context(that.pages.eq(page).data('id'),function (that) {that.stop = true;},page);	
 	});
 };
 
@@ -29,7 +29,7 @@ Page.prototype.slideup = function (page) {
 	this.pages.eq(page).animate({
 		top: -this.pagesHeight
 	},500,'ease-out',function () {
-		draw.context(that.pages.eq(page-1).data('id'),function (that) {that.stop = true;});
+		draw.context(that.pages.eq(page-1).data('id'),function (that) {that.stop = true;},page);
 		
 	});
 };
@@ -432,13 +432,26 @@ Draw.prototype.drawFuture = function (context) {
 		}); 
 };
 
-Draw.prototype.context = function (obj,callback) {
+Draw.prototype.drawAll = function (obj,callback,obj) {
+	for (var i = 0; i < obj.length; i++) {
+		this[obj](obj);
+	}
+	if (callback) {
+		if (obj) {
+			callback(obj);
+		}
+	}
+}
+
+Draw.prototype.context = function (obj,callback,obj) {
 	// console.log(obj.data('id'));
 	if (obj){
 		this[obj](obj);
 	}
 	if (callback){
-		callback(page);
+		if (obj) {
+			callback(obj);
+		}
 	}
 };
 
