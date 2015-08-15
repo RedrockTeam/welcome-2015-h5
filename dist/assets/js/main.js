@@ -149,8 +149,8 @@ Draw.prototype.drawSex = function (context) {
 		                }
 		            },
 		            data:[
-		                {value:data.sex.male, name:'男生'},
-		                {value:data.sex.female, name:'女生'}
+		                {value:parseInt(data.sex.male), name:'男生'},
+		                {value:parseInt(data.sex.female), name:'女生'}
 		            ]
 		        },
 		        {
@@ -173,8 +173,8 @@ Draw.prototype.drawSex = function (context) {
 		                }
 		            },
 		            data:[
-		                {value:data.sex.single, name:'脱单'},
-		                {value:data.sex.fff, name:'未脱单'}
+		                {value:parseInt(data.sex.single), name:'脱单'},
+		                {value:parseInt(data.sex.fff), name:'未脱单'}
 		            ]
 		        }]
 		    };
