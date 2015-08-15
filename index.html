@@ -2,21 +2,315 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=200">
 	<meta name="author" content="yaosui,465964690@qq.com">
 	<meta name="keywords" content="重邮,新生,红岩,大数据">
 	<meta name="description" content="重邮新生专题--大数据">
 	<meta name="copyright" content="本版权归红岩网校工作站所有。All Rights Reserved">
-	<title>重邮新生“大数据”</title>
+	<title>重邮新生--“大数据”</title>
 	<link rel="stylesheet" href="dist/assets/css/main.css">
 	<link rel="shortcut icon" type="image/ico" href="" />
-	<script src="bower_components/zepto/zepto.min.js"></script>
+	<script src="dist/assets/js/zepto.min.js"></script>
+	<script data-require-id="echarts/chart/pie" src="dist/assets/js/esl.js"></script>
+	<script data-require-id="echarts/chart/pie" src="dist/assets/js/pie.js"></script>
+	<script src="dist/assets/js/echarts.js"></script>
 </head>
 <body>
-	<div class="page"></div>
-	<div class="page"></div>
-	<div class="page"></div>
-	<div class="page"></div>
+	<div class="login">
+		<img class="logo" src="dist/assets/images/logo.png" alt="">
+		<form action="index.php">
+			<div class="user iconfont">&#xe60b;<input type="text" placeholder="请填写姓名"></div>
+			<div class="pwd iconfont">&#xf0109;<input type="password" placeholder="请输入身份证后六位"></div>
+			<input type="submit" class="submit" value="登录">
+		</form>
+	</div>
+	<div class="load">
+		<div class="loading">
+			<div class="circle"></div>
+			<div class="circle"></div>
+			<div class="circle"></div>
+			<div class="circle"></div>
+			<div class="circle"></div>
+		</div>
+	</div>
+	<div class="pageList">
+		<div class="page">
+			<img src="dist/assets/images/share.png" class="sharelogo" alt="">
+			<div class="shareBtn">分享</div>
+		</div>
+		<div class="page" data-id="drawFuture">
+			<img class="title" src="dist/assets/images/future.png" alt="">
+			<div id="drawFuture" class="chartBox"></div>
+			<h4 class="iconfont dropup">&#xe64e;</h4>
+		</div>
+		<div class="page" data-id="drawHard">
+			<img class="title" src="dist/assets/images/hard.png" alt="">
+			<div id="drawHard" class="chartBox"></div>
+			<h4 class="iconfont dropup">&#xe64e;</h4>
+		</div>
+		<div class="page" data-id="drawSame">
+			<img class="title" src="dist/assets/images/samemon.png" alt="">
+			<div id="drawSame" class="chartBox"></div>
+			<h4 class="iconfont dropup">&#xe64e;</h4>
+		</div>
+		<div class="page" data-id="drawCome">
+			<img class="title" src="dist/assets/images/come.png" alt="">
+			<div id="drawCome" class="chartBox"></div>
+			<h4 class="iconfont dropup">&#xe64e;</h4>
+		</div>
+		<div class="page" data-id="drawSex">
+			<img class="title" src="dist/assets/images/boyandgirl.png" alt="">
+			<div id="drawSex" class="chartBox"></div>
+			<h4 class="iconfont dropup">&#xe64e;</h4>
+		</div>
+		<div class="page" id="home">
+			<div class="cloud cloud1"></div>
+			<div class="cloud cloud2"></div>
+			<div class="cloud cloud3"></div>
+			<h4 class="iconfont dropup">&#xe64e;</h4>
+		</div>
+	</div>
+	<script>
+	var data = {};
+	$('.submit').on('touchend', function (e) {
+		e.preventDefault();
+		$.ajax({
+			url: 'http://hongyan.cqupt.edu.cn/welcome/2015/index.php/home/api/data?push=data',
+			type: 'post',
+			data: {name: $('.user').val(), pwd: $('.pwd').val()},
+			success: function (res) {
+				console.log(res);
+				if(data.status == 404){
+					alert('账号或者密码错误!');
+				} else {
+					data = res.data;
+					page.login();
+				}
+			},
+			error: function () {
+				console.log('获取数据失败');
+		}
+	});
+		page.login();
+	});
+	
+	
+	var hard = {
+		tx: {
+			n1: '电子电路',
+			n1k: 62,
+			n2: '大学物理',
+			n2k: 20,
+			n3: '高等数学',
+			n3k: 18
+		},
+		jk: {
+			n1: '大学物理',
+			n1k: 40,
+			n2: '高等数学',
+			n2k: 35,
+			n3: '线性代数',
+			n3k: 25 		
+		},
+		zdh: {
+			n1: '大学物理',
+			n1k: 54,
+			n2: '概率论',
+			n2k: 26,
+			n3: '工程图学',
+			n3k: 20 
+		},
+		gd: {
+			n1: '大学物理',
+			n1k: 45,
+			n2: '高等数学',
+			n2k: 30,
+			n3: 'C语言',
+			n3k: 25
+		},
+		lxy: {
+			n1: '数学分析',
+			n1k: 49,
+			n2: '高等代数',
+			n2k: 28,
+			n3: '大学物理',
+			n3k: 23 
+		},
+		sw: {
+			n1: '高等数学',
+			n1k: 45,
+			n2: '视听说',
+			n2k: 31,
+			n3: '化学',
+			n3k: 24 
+		},
+		jg: {
+			n1: '概率论',
+			n1k: 42,
+			n2: '高等数学',
+			n2k: 38,
+			n3: 'C语言',
+			n3k: 20 
+		},
+		ty: {
+			n1: '运动解剖学',
+			n1k: 56,
+			n2: '体育概论',
+			n2k: 22,
+			n3: '健美操',
+			n3k: 22 
+		},
+		wgy: {
+			n1: '基础英语',
+			n1k: 49,
+			n2: '英语语音',
+			n2k: 31,
+			n3: '英语阅读',
+			n3k: 30
+		},
+		xjzz: {
+			n1: '工程图学',
+			n1k: 55,
+			n2: '大学物理',
+			n2k: 24,
+			n3: '高等数学',
+			n3k: 21 
+		},
+		cm: {
+			n1: '视听说',
+			n1k: 43,
+			n2: '读写译',
+			n2k: 32,
+			n3: '美术史',
+			n3k: 25 
+		},
+		rj: {
+			n1: '高等数学',
+			n1k: 56,
+			n2: '离散数学',
+			n2k: 23,
+			n3: 'C++',
+			n3k: 21 
+		},
+		fxy: {
+			n1: '刑法',
+			n1k: 54,
+			n2: '民法',
+			n2k: 25,
+			n3: '法理',
+			n3k: 21 
+		},
+		gj: {
+			n1: '软件设计基础',
+			n1k: 52,
+			n2: '线性代数',
+			n2k: 32,
+			n3: '大学物理',
+			n3k: 16 
+		}
+	};
+	var future = {
+		tx: {
+			jy: 688,
+			sx: 233,
+			djy: 19,
+			lh: 3
+		},
+		jk: {
+			jy: 360,
+			sx: 106,
+			djy: 23,
+			lh: 4			
+		},
+		gd: {
+			jy: 167,
+			sx: 55,
+			djy: 13,
+			lh: 0
+		},
+		zdh: {
+			jy: 349,
+			sx: 74,
+			djy: 6,
+			lh: ''
+		},
+		lxy: {
+			jy: 123,
+			sx: 23,
+			djy: 8,
+			lh: 4
+		},
+		sw: {
+			jy: 192,
+			sx: 63,
+			djy: 12,
+			lh: 1
+		},
+		jg: {
+			jy: 488,
+			sx: 53,
+			djy: 29,
+			lh: 0
+		},
+		ty: {
+			jy: 52,
+			sx: 7,
+			djy: 1,
+			lh: 0
+		},
+		wgy: {
+			jy: 54,
+			sx: 10,
+			djy: 0,
+			lh: 0
+		},
+		xjzz: {
+			jy: 102,
+			sx: 12,
+			djy: 5,
+			lh: 0
+		},
+		cm: {
+			jy: 538,
+			sx: 69,
+			djy: 17,
+			lh: 27
+		},
+		rj: {
+			jy: 494,
+			sx: 40,
+			djy: 26,
+			lh: 8
+		},
+		bdt: {
+			jy: 111,
+			sx: 27,
+			djy: 8,
+			lh: 0
+		},
+		fxy: {
+			jy: 51,
+			sx: 25,
+			djy: 4,
+			lh: 0
+		}
+	};
+	</script>
 	<script src="dist/assets/js/main.js"></script>
+	<script>
+	//结束加载
+	// var isLogin = true;
+	// if (isLogin) {
+	// 	$('.login').css('display','none');
+	// }
+	$('.load').eq(0).animate({opacity:0}, 2000, "ease-in", function() {
+		$('.load').css('display','none');
+	});
+
+	$('.shareBtn').on('touchend',function () {
+		alert('点击右上角分享到朋友圈');
+	});
+
+	</script>
 </body>
 </html>
