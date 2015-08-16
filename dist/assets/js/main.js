@@ -71,22 +71,24 @@ Page.prototype.bind = function () {
 		if (that.move && isLogin) {
 			that.move = false;
 			if (that.pages.eq(that.lastPage).length !== 0 && that.stop && (that.moveDir == 'down')) {
-				that.stop = false;
 				if (-parseInt(that.pages.eq(that.lastPage).css('top')) > that.pagesHeight*3/4) {
+				 	that.stop = false;
 				 	that.slideup(that.lastPage);
 				} else if (-parseInt(that.pages.eq(that.lastPage).css('top')) < that.pagesHeight*3/4) {
+				 	that.stop = false;
 				 	that.slidedown(that.lastPage);
 				 	that.nowPage += 1;
 				 	that.lastPage += 1;
 				} 
 			}
 			if (that.nowPage && that.stop && (that.moveDir == 'up')) {
-				that.stop = false;
 				if (-parseInt(that.pages.eq(that.nowPage).css('top')) > that.pagesHeight/4) {
+					that.stop = false;
 					that.slideup(that.nowPage);
 					that.nowPage -= 1;
 					that.lastPage -= 1;
 				} else if (-parseInt(that.pages.eq(that.nowPage).css('top')) < that.pagesHeight/4) {
+					that.stop = false;
 					that.slidedown(that.nowPage);
 				}
 			}
