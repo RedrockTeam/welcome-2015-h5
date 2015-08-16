@@ -18,7 +18,7 @@ function Page (obj) {
 Page.prototype.slidedown = function (pg) {
 	var that = this;
 	this.stop = false;
-	console.log(223);
+	
 	this.pages.eq(pg).animate({
 		top: '0px'
 	},500,'ease-out',function () {
@@ -29,11 +29,11 @@ Page.prototype.slidedown = function (pg) {
 Page.prototype.slideup = function (pg) {
 	var that = this;
 	this.stop = false;
-	console.log(233);
+	
 	this.pages.eq(pg).animate({
 		top: -this.pagesHeight + 'px'
 	},500,'ease-out',function () {
-		draw.context(that.pages.eq(pg-1).data('id'),function (that) {that.stop = true;},that);
+		draw.context(that.pages.eq((pg-1)).data('id'),function (that) {that.stop = true;},that);
 	});
 };
 
@@ -53,8 +53,8 @@ Page.prototype.bind = function () {
 		}
 	}).on('touchmove', function (e) {
 		var pagey = e.touches[0].pageY;
-		console.log(1);
 		that.move = true;
+		that.moveDir = '';
 		if ((that.nowPage || that.pages.eq(that.lastPage).length !== 0) && that.stop && isLogin) {
 			if (pagey - that.endposition[1] < 0 && that.nowPage) {
 				that.moveDir = 'up';
