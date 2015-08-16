@@ -293,7 +293,7 @@ Draw.prototype.drawSame = function (context) {
 				color : ['#ffa634','#fee147','#c4df42','#eeb623'],
 			    title : {
 			        text: '新生中和你同年同月的比例为'+Math.round(data.same.samemon/(data.same.samemon+data.same.others)*10000)/100.000+'%',
-			        subtext: '新生中和你相同星座的比例为 ' + Math.round(data.same.samehor/(data.same.samehor+data.same.otherhor)*10000)/100.000+'%',
+			        subtext: '新生中和你相同星座的比例为 ' + Math.round(data.same.samehor/(data.same.samehor+data.same.othershor)*10000)/100.000+'%',
 			        x: 'center',
 			        textStyle: {
 			        	color: '#d87e1d',
@@ -363,7 +363,7 @@ Draw.prototype.drawSame = function (context) {
 		            },
 		            data:[
 		                {value:parseInt(data.same.samehor), name:'相同星座'},
-		                {value:parseInt(data.same.otherhor), name:'其它星座'}
+		                {value:parseInt(data.same.othershor), name:'其它星座'}
 		            ]
 		        }]
 		    };
