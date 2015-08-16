@@ -337,21 +337,21 @@
 					samefemale = data.same.female;
 					$('input').hide();
 					draw.drawAll(['drawSex','drawCome','drawSame','drawHard','drawFuture']);
+					$.ajax({
+						url: 'http://hongyan.cqupt.edu.cn/welcome/2015/index.php/home/api/data?push=friend',
+						type: 'post',
+						data: {name: $('.user input').val(), pwd: $('.pwd input').val(), agent: 'h5'},
+						success: function (res){
+							res = JSON.parse(res).data;
+							fillPer(res);
+							page.login();
+							isLogin = true;
+						},
+						error: function () {
+							alert('获取个人信息失败');
+						}
+					});
 				}
-				$.ajax({
-					url: 'http://hongyan.cqupt.edu.cn/welcome/2015/index.php/home/api/data?push=friend',
-					type: 'post',
-					data: {name: $('.user input').val(), pwd: $('.pwd input').val(), agent: 'h5'},
-					success: function (res){
-						res = JSON.parse(res).data;
-						fillPer(res);
-						page.login();
-						isLogin = true;
-					},
-					error: function () {
-						alert('获取个人信息失败');
-					}
-				});
 			},
 			error: function () {
 				alert('获取数据失败');
