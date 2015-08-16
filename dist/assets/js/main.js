@@ -291,7 +291,7 @@ Draw.prototype.drawSame = function (context) {
 			var option = {
 				color : ['#ffa634','#fee147','#c4df42','#eeb623'],
 			    title : {
-			        text: '新生中和你同年同月的比例为'+Math.round(data.same.samemon/(data.fsame.samemon+data.same.others)*10000)/100.000+'%',
+			        text: '新生中和你同年同月的比例为'+Math.round(data.same.samemon/(data.same.samemon+data.same.others)*10000)/100.000+'%',
 			        subtext: '',
 			        x:'center',
 			        textStyle: {
