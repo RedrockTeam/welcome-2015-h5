@@ -336,8 +336,8 @@
 					type: 'post',
 					data: {name: $('.user input').val(), pwd: $('.pwd input').val(), agent: 'h5'},
 					success: function (res){
-						data = JSON.parse(res).data;
-						fillPer(data);
+						res = JSON.parse(res).data;
+						fillPer(res);
 						page.login();
 						isLogin = true;
 					},
