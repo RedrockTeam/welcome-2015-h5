@@ -60,6 +60,8 @@
 			<div id="drawSex" class="chartBox"></div>
 			<h4 class="iconfont dropup">&#xe64e;</h4>
 		</div>
+		<div class="page" id="personal">
+		</div>
 		<div class="page" id="home">
 			<div class="cloud cloud1"></div>
 			<div class="cloud cloud2"></div>
@@ -75,38 +77,24 @@
 	<script>
 	var data = '';
 	var isLogin = false;
-
-	require.config({
-            paths: {
-                echarts: './dist/js'
-            }
-        });
-
-	$('.submit').on('touchend', function (e) {
-		e.preventDefault();
-		$.ajax({
-			url: 'http://hongyan.cqupt.edu.cn/welcome/2015/index.php/home/api/data?push=data',
-			type: 'post',
-			data: {name: $('.user input').val(), pwd: $('.pwd input').val()},
-			success: function (res) {
-				console.log(res.data);
-				if(JSON.parse(res).status == 404){
-					alert('账号或者密码错误!');
-				} else {
-					data = JSON.parse(res).data;
-					$('input').hide();
-					page.login();
-					draw.drawAll(['drawSex','drawCome','drawSame','drawHard','drawFuture']);
-					isLogin = true;
-				}
-			},
-			error: function () {
-				console.log('获取数据失败');
-			}
-		});
-	});
-	
-	
+	var name = '';
+	var colleges = {
+		cm: "传媒艺术学院", 
+		ty: "体育学院", 
+		xjzz: "先进制造工程学院", 
+		bdt: "光电工程学院/重庆国际半导体学院", 
+		gd: "光电工程学院/重庆国际半导体学院", 
+		gj: "国际学院", 
+		wgy: "外国语学院", 
+		fxy: "法学院", 
+		lxy: "理学院", 
+		sw: "生物信息学院", 
+		jg: "经济管理学院", 
+		zdh: "自动化学院", 
+		jsj: "计算机科学与技术学院", 
+		rj: "软件工程学院", 
+		tx: "通信与信息工程学院"
+	}
 	var hard = {
 		tx: {
 			n1: '电子电路',
@@ -307,6 +295,62 @@
 			lh: 0
 		}
 	};
+
+	function fillPer(data) {
+		var string = '';
+		var name = data.stuID;
+		string += '<p class="htitle"><span class="name">'+name+'</span>同学，欢迎使用重邮小帮手</p><p>以下是你的相关信息</p>';
+		string += '<p>学号：<span class="stuID">'+data.stuID+'</span></p>';
+		string += '<p>学院：<span class="stuID">'+colleges[data.college]+'</span></p><p><ol>';
+		string += '<li class="oltitle"><span>姓名</span><span>班级</span><span class="rpro">籍贯</span></li>';
+		for (var i = 0; i < data.roommate.length; i++) {
+			string += '<li><span class="rname">'+data.roommate[i].stu_name+'</span><span class="rcollege">'+data.roommate[i].stu_class+'</span><span class="rpro">'+data.roommate[i].stu_prov+'</span></li>';
+		}
+		string += '</ol></p><h4 class="iconfont dropup">&#xe64e;</h4>';
+		$('#personal').html(string);
+	}
+
+	require.config({
+            paths: {
+                echarts: './dist/js'
+            }
+        });
+
+	$('.submit').on('touchend', function (e) {
+		e.preventDefault();
+		$.ajax({
+			url: 'http://hongyan.cqupt.edu.cn/welcome/2015/index.php/home/api/data?push=data',
+			type: 'post',
+			data: {name: $('.user input').val(), pwd: $('.pwd input').val()},
+			success: function (res) {
+				if(JSON.parse(res).status == 404){
+					alert('账号或者密码错误!');
+				} else {
+					data = JSON.parse(res).data;
+					name = $('.user input').val();
+					$('input').hide();
+					draw.drawAll(['drawSex','drawCome','drawSame','drawHard','drawFuture']);
+				}
+				$.ajax({
+					url: 'http://hongyan.cqupt.edu.cn/welcome/2015/index.php/home/api/data?push=friend',
+					type: 'post',
+					data: {name: $('.user input').val(), pwd: $('.pwd input').val(), agent: 'h5'},
+					success: function (res){
+						data = JSON.parse(res).data;
+						fillPer(data);
+						page.login();
+						isLogin = true;
+					},
+					error: function () {
+						alert('获取个人信息失败');
+					}
+				});
+			},
+			error: function () {
+				alert('获取数据失败');
+			}
+		});
+	});
 	
 	//结束加载
 	// var isLogin = true;

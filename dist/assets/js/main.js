@@ -110,8 +110,8 @@ Draw.prototype.drawSex = function (context) {
 			var option = {
 				color : ['#ffa634','#fee147','#c4df42','#eeb623'],
 			    title : {
-			        text: '你所在学院的男女比例',
-			        subtext: '本数据由红岩网校工作站统计',
+			        text: '你所在学院的男女比例为' + data.sex.male + ' : ' + data.sex.female,
+			        subtext: '脱单率' + Math.round(data.sex.fff/(data.sex.fff+data.sex.single)*10000)/100.000+'% (仅作参考)',
 			        x: 'center',
 			        textStyle: {
 			        	color: '#d87e1d',
@@ -201,8 +201,8 @@ Draw.prototype.drawCome = function (context) {
 			var option = {
 				color : ['#ffa634','#fee147','#c4df42','#eeb623'],
 			    title : {
-			        text: '新生中你的老乡比例',
-			        subtext: '本数据由红岩网校工作站统计',
+			        text: '新生中你的老乡比例为 ' + Math.round(data.from.hometown/(data.from.hometown+data.from.others)*10000)/100.000+'%',
+			        subtext: '其中男女比例为 ' + data.from.male +' : '+ data.from.female,
 			        x: 'center',
 			        textStyle: {
 			        	color: '#d87e1d',
@@ -291,8 +291,8 @@ Draw.prototype.drawSame = function (context) {
 			var option = {
 				color : ['#ffa634','#fee147','#c4df42','#eeb623'],
 			    title : {
-			        text: '新生中和你同年同月的比例',
-			        subtext: '本数据由红岩网校工作站统计',
+			        text: '新生中和你同年同月的比例为'+Math.round(data.same.samemon/(data.fsame.samemon+data.same.others)*10000)/100.000+'%',
+			        subtext: '',
 			        x:'center',
 			        textStyle: {
 			        	color: '#d87e1d',
@@ -348,7 +348,7 @@ Draw.prototype.drawHard = function (context) {
 				color : ['#ffa634','#fee147','#c4df42','#eeb623'],
 			    title : {
 			        text: '你所在学院学生心目中大一最难的科目',
-			        subtext: '本数据由红岩网校工作站统计',
+			        subtext: '本数据由红岩网校工作站统计，仅作参考',
 			        x:'center',
 			        textStyle: {
 			        	color: '#d87e1d',
@@ -395,7 +395,7 @@ Draw.prototype.drawFuture = function (context) {
 				color : ['#ffa634','#fee147','#c4df42','#eeb623'],
 			    title : {
 			        text: '你所在学院2015年毕业生毕业去向',
-			        subtext: '本数据由红岩网校工作站统计',
+			        subtext: '本数据由红岩网校工作站统计，仅作参考',
 			        x:'center',
 			        textStyle: {
 			        	color: '#d87e1d',
