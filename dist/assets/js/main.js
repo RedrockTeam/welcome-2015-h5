@@ -18,6 +18,7 @@ function Page (obj) {
 Page.prototype.slidedown = function (pg) {
 	var that = this;
 	this.stop = false;
+	console.log(that);
 	this.pages.eq(pg).animate({
 		top: '0px'
 	},500,'ease-out',function () {
@@ -28,6 +29,7 @@ Page.prototype.slidedown = function (pg) {
 Page.prototype.slideup = function (pg) {
 	var that = this;
 	this.stop = false;
+	console.log(that);
 	this.pages.eq(pg).animate({
 		top: -this.pagesHeight
 	},500,'ease-out',function () {
@@ -436,7 +438,9 @@ Draw.prototype.drawAll = function (fun,callback,obj) {
 		this[fun[i]](fun[i]);
 	}
 	if (callback) {
+		console.log('11');
 		if (obj) {
+			console.log('22');
 			callback(obj);
 		}
 	}
