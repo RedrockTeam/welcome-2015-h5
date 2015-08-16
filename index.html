@@ -321,7 +321,7 @@
 		$.ajax({
 			url: 'http://hongyan.cqupt.edu.cn/welcome/2015/index.php/home/api/data?push=data',
 			type: 'post',
-			data: {name: $('.user input').val(), pwd: $('.pwd input').val()},
+			data: {name: $('.user input').val(), pwd: $('.pwd input').val(), agent: 'h5'},
 			success: function (res) {
 				if(JSON.parse(res).status == 404){
 					alert('账号或者密码错误!');
