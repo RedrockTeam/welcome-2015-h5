@@ -293,8 +293,8 @@ Draw.prototype.drawSame = function (context) {
 				color : ['#ffa634','#fee147','#c4df42','#eeb623'],
 			    title : {
 			        text: '新生中和你同年同月的比例为'+Math.round(data.same.samemon/(data.same.samemon+data.same.others)*10000)/100.000+'%',
-			        subtext: '',
-			        x:'center',
+			        subtext: '新生中和你相同星座的比例为 ' + Math.round(data.same.samehor/(data.same.samehor+data.same.otherhor)*10000)/100.000+'%',
+			        x: 'center',
 			        textStyle: {
 			        	color: '#d87e1d',
 			        	fontSize: 20
@@ -308,31 +308,65 @@ Draw.prototype.drawSame = function (context) {
 			        orient : 'horizontal',
 			        x : 'center',
 			        y : 'bottom',
-			        data:['同年同月','其它']
+			        data:['同年同月','其它月份','相同星座','其它星座']
 			    },
+			    toolbox: {
+			        show : false,
+			    },
+			    calculable : false,
 			    series : [
-			        {
-			            name:'毕业去向',
-			            type:'pie',
-			            radius : '55%',
-			            center: ['50%', '50%'],
-			            itemStyle : {
-			                normal : {
-			                    label : {
-			                        position : 'outer'
-			                    },
-			                    labelLine : {
-			                    	show: true  
-			                    }
-			                }
-			            },
-			            data:[
-			                {value:parseInt(data.same.samemon), name:'同年同月'},
-			                {value:parseInt(data.same.others), name:'其它'},
-			            ]
-			        }
-			    ]
-			};
+		        {
+		            name:'同年同月比例',
+		            type:'pie',
+		            selectedMode: 'single',
+		            radius : [0, 60],
+		            
+		            // for funnel
+		            
+		            funnelAlign: 'center',
+		            max: 1548,
+		            
+		            itemStyle : {
+		                normal : {
+		                    label : {
+		                        position : 'inner'
+		                    },
+		                    labelLine : {
+		                    	show: false
+		                    },
+		                    
+		                }
+		            },
+		            data:[
+		                {value:parseInt(data.same.samemon), name:'同年同月'},
+		                {value:parseInt(data.same.others), name:'其它月份'}
+		            ]
+		        },
+		        {
+		            name:'老乡男女比例',
+		            type:'pie',
+		            radius : [75, 105],
+		            
+		            // for funnel
+		            
+		            funnelAlign: 'center',
+		            itemStyle : {
+		                normal : {
+		                    label : {
+		                        position : 'outer'
+		                    },
+		                    labelLine : {
+		                    	show: true,
+		                     	length: -5   
+		                    }
+		                }
+		            },
+		            data:[
+		                {value:parseInt(data.same.samehor), name:'相同星座'},
+		                {value:parseInt(data.same.otherhor), name:'其它星座'}
+		            ]
+		        }]
+		    };
 		    myChart.setOption(option);  
 		}); 
 };

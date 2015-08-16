@@ -305,7 +305,9 @@
 		for (var i = 0; i < data.roommate.length; i++) {
 			string += '<li><span class="rname">'+data.roommate[i].stu_name+'</span><span class="rcollege">'+data.roommate[i].stu_class+'</span><span class="rpro">'+data.roommate[i].stu_prov+'</span></li>';
 		}
-		string += '</ol></p><h4 class="iconfont dropup">&#xe64e;</h4>';
+		string += '</ol></p>';
+		string += '<p>和你同年同月同日的有<span>'+data.same.sameday+'</span>人，其中男生<span>'+data.same.male+'</span>人，女生<span>'+data.same.female+'</span>人。</p>';
+		string += '<h4 class="iconfont dropup">&#xe64e;</h4>';
 		$('#personal').html(string);
 	}
 
