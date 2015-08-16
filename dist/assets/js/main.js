@@ -17,6 +17,7 @@ function Page (obj) {
 
 Page.prototype.slidedown = function (pg) {
 	var that = this;
+	this.stop = false;
 	this.pages.eq(pg).animate({
 		top: '0px'
 	},500,'ease-out',function () {
@@ -26,6 +27,7 @@ Page.prototype.slidedown = function (pg) {
 
 Page.prototype.slideup = function (pg) {
 	var that = this;
+	this.stop = false;
 	this.pages.eq(pg).animate({
 		top: -this.pagesHeight
 	},500,'ease-out',function () {
@@ -72,10 +74,8 @@ Page.prototype.bind = function () {
 			that.move = false;
 			if (that.pages.eq(that.lastPage).length !== 0 && that.stop && (that.moveDir == 'down')) {
 				if (-parseInt(that.pages.eq(that.lastPage).css('top')) > that.pagesHeight*3/4) {
-				 	that.stop = false;
 				 	that.slideup(that.lastPage);
 				} else if (-parseInt(that.pages.eq(that.lastPage).css('top')) < that.pagesHeight*3/4) {
-				 	that.stop = false;
 				 	that.slidedown(that.lastPage);
 				 	that.nowPage += 1;
 				 	that.lastPage += 1;
@@ -83,12 +83,10 @@ Page.prototype.bind = function () {
 			}
 			if (that.nowPage && that.stop && (that.moveDir == 'up')) {
 				if (-parseInt(that.pages.eq(that.nowPage).css('top')) > that.pagesHeight/4) {
-					that.stop = false;
 					that.slideup(that.nowPage);
 					that.nowPage -= 1;
 					that.lastPage -= 1;
 				} else if (-parseInt(that.pages.eq(that.nowPage).css('top')) < that.pagesHeight/4) {
-					that.stop = false;
 					that.slidedown(that.nowPage);
 				}
 			}
