@@ -50,12 +50,13 @@ Page.prototype.bind = function () {
 		}
 	}).on('touchmove', function (e) {
 		var pagey = e.touches[0].pageY;
+		console.log(1);
 		that.move = true;
 		if ((that.nowPage || that.pages.eq(that.lastPage).length !== 0) && that.stop && isLogin) {
-			if (pagey - that.endposition[1] < -10 && that.nowPage) {
+			if (pagey - that.endposition[1] < 0 && that.nowPage) {
 				that.moveDir = 'up';
 				that.pages.eq(that.nowPage).css({top: parseFloat(that.pages.eq(that.nowPage).css('top')) + pagey - that.endposition[1]});
-			} else if (pagey - that.endposition[1] > 10 && that.pages.eq(that.lastPage).length !== 0) {
+			} else if (pagey - that.endposition[1] > 0 && that.pages.eq(that.lastPage).length !== 0) {
 				console.log(that.pages.eq(that.nowPage).css('top'));
 				if (that.pages.eq(that.nowPage).css('top') == '0px') {
 					that.moveDir = 'down';
