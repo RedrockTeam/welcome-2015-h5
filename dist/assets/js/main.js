@@ -49,7 +49,7 @@ Page.prototype.bind = function () {
 			that.endposition.push(e.touches[0].pageX,e.touches[0].pageY);
 		}
 	}).on('touchmove', function (e) {
-
+		event.preventDefault();
 		var pagey = e.touches[0].pageY;
 		that.move = true;
 		if ((that.nowPage || that.pages.eq(that.lastPage).length !== 0) && that.stop && isLogin) {
