@@ -302,7 +302,7 @@
 		string += '<p class="htitle"><span class="name">'+name+'</span>同学，欢迎使用重邮小帮手</p><p>以下是你的相关信息</p>';
 		string += '<p>学号：<span class="stuID">'+data.stuID+'</span></p>';
 		string += '<p>学院：<span class="stuID">'+colleges[data.college]+'</span></p><p><ol>';
-		string += '<li class="oltitle"><span>姓名</span><span>班级</span><span class="rpro">籍贯</span></li>';
+		string += '<div class="oltitle"><span>姓名</span><span>班级</span><span class="rpro">籍贯</span></div>';
 		for (var i = 0; i < data.roommate.length; i++) {
 			string += '<li><span class="rname">'+data.roommate[i].stu_name+'</span><span class="rcollege">'+data.roommate[i].stu_class+'</span><span class="rpro">'+data.roommate[i].stu_prov+'</span></li>';
 		}
