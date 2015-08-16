@@ -451,8 +451,10 @@ Draw.prototype.context = function (fun,callback,obj) {
 	if (fun){
 		this[fun](fun);
 	}
-	if (callback){
+	if (callback) {
+		console.log('11');
 		if (obj) {
+			console.log('22');
 			callback(obj);
 		}
 	}
