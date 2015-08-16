@@ -180,8 +180,8 @@ Draw.prototype.drawSex = function (context) {
 		                }
 		            },
 		            data:[
-		                {value:parseInt(data.sex.single), name:'脱单'},
-		                {value:parseInt(data.sex.fff), name:'未脱单'}
+		                {value:parseInt(data.sex.fff), name:'脱单'},
+		                {value:parseInt(data.sex.single), name:'未脱单'}
 		            ]
 		        }]
 		    };
@@ -348,7 +348,7 @@ Draw.prototype.drawHard = function (context) {
 				color : ['#ffa634','#fee147','#c4df42','#eeb623'],
 			    title : {
 			        text: '你所在学院学生心目中大一最难的科目',
-			        subtext: '本数据由红岩网校工作站统计，略有误差',
+			        subtext: '本数据由红岩网校工作站统计',
 			        x:'center',
 			        textStyle: {
 			        	color: '#d87e1d',
