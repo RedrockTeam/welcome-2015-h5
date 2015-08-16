@@ -67,6 +67,7 @@ Page.prototype.bind = function () {
 			that.endposition.push(e.touches[0].pageX,e.touches[0].pageY);
 		}
 	}).on('touchend',function (e) {
+		event.preventDefault();
 		console.log('end');
 		if (that.move && isLogin) {
 			that.move = false;
