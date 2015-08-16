@@ -18,7 +18,7 @@ function Page (obj) {
 Page.prototype.slidedown = function (pg) {
 	var that = this;
 	this.stop = false;
-	console.log(that);
+	console.log(223);
 	this.pages.eq(pg).animate({
 		top: '0px'
 	},500,'ease-out',function () {
@@ -29,12 +29,11 @@ Page.prototype.slidedown = function (pg) {
 Page.prototype.slideup = function (pg) {
 	var that = this;
 	this.stop = false;
-	console.log(that);
+	console.log(233);
 	this.pages.eq(pg).animate({
-		top: -this.pagesHeight
+		top: -this.pagesHeight + 'px'
 	},500,'ease-out',function () {
 		draw.context(that.pages.eq(pg-1).data('id'),function (that) {that.stop = true;},that);
-		
 	});
 };
 
