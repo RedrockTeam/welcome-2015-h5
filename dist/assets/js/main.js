@@ -398,7 +398,7 @@ Draw.prototype.drawHard = function (context) {
 			        orient : 'horizontal',
 			        x : 'center',
 			        y : 'bottom',
-			        data:[]
+			        data:[hard[data.college].n1,hard[data.college].n2,hard[data.college].n3]
 			    },
 			    series : [
 			        {
